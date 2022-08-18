@@ -13,42 +13,27 @@ import java.io.*;
  * 
  * Write a program that tests Benford’s Law. You will use data from two different real-life 
  * data sources. The data is stored in two separate text files: sunspots.txt and librarybooks.txt
- * Feel free to try this program out on other large sets of data!
+ * Feel free to try this program out on other large sets of data! You will also be tested on 
+ * a third mystery file of stock data.
  * 
  * You will loop through the list of numbers and count how many times 1 is the first
  * digit, 2 is the first, etc...
  * 
  * Your output/results should look like this:
  * 
- * Analysis of sunspot data:
- * Percentage of numbers starting with 1: 28.24%
- * Percentage of numbers starting with 2: 12.04%
- * Percentage of numbers starting with 3: 9.99%
- * Percentage of numbers starting with 4: 10.34%
- * Percentage of numbers starting with 5: 9.92%
- * Percentage of numbers starting with 6: 8.36%
- * Percentage of numbers starting with 7: 6.28%
- * Percentage of numbers starting with 8: 6.38%
- * Percentage of numbers starting with 9: 5.63%
- * 
  * Analysis of library book data:
- * Percentage of numbers starting with 1: 33.44%
- * Percentage of numbers starting with 2: 17.57%
- * Percentage of numbers starting with 3: 11.14%
- * Percentage of numbers starting with 4: 8.77%
- * Percentage of numbers starting with 5: 7.00%
- * Percentage of numbers starting with 6: 6.13%
- * Percentage of numbers starting with 7: 5.49%
- * Percentage of numbers starting with 8: 5.50%
- * Percentage of numbers starting with 9: 4.95%
+ * [33.4, 17.6, 11.1, 8.8, 7.0, 6.1, 5.5, 5.5, 4.9]
+ * Analysis of sunspot data:
+ * [29.1, 12.4, 10.3, 10.6, 10.2, 8.6, 6.5, 6.6, 5.8]
  * 
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class BenfordsLaw
+public class Benford
 {
     public static void main(String[] args){
        
+        // Main method used for testing code. Feel free to edit or add to the main method for further testing.
         System.out.println("According to Benford's Law, one might expect the following frequency of first digits");
         System.out.println("************************************************************************************");
         final double[]  freq = {0.0, 30.1, 17.6, 12.5, 9.7, 7.9, 6.7, 5.8, 5.1, 4.6};
@@ -57,98 +42,63 @@ public class BenfordsLaw
             System.out.println("Percentage of numbers starting with " + i + ": " + freq[i] + "%");
         System.out.println();
         System.out.println("Analysis of sunspot data:");
-        printFirstDigitsSunSpots("sunspots.txt");
+        System.out.println(Arrays.toString(firstDigitFrequencies("sunspots.txt",21)));
         System.out.println();
         System.out.println("Analysis of library book data:");
-        printFirstDigitsLibraryBooks("librarybooks.txt");
+        System.out.println(Arrays.toString(firstDigitFrequencies("librarybooks.txt",0)));
+        
     }
         
-    
-    
     /**
-     * Opens a file for input and prints out the frequency of 1 as a first digit, 2 as a first digit,
-     * 3 as a first digit, and so forth
-     */ 
-    private static void printFirstDigitsLibraryBooks(String fileName)
-    {
+     * Returns the frequencies of first digits in a text file, as a percentage, rounded to the nearest tenth.
+     * (12.349 should round to 12.3 and 12.350 should round to 12.4.) 
+     * For example: firstDigitFrequencies("sunspots.txt",21) -> [29.1, 12.4, 10.3, 10.6, 10.2, 8.6, 6.5, 6.6, 5.8]
+     * In other words, 29.1% of the data begins with a 1, 12.4% of the data begins with a 2, and so on. 
+     * In this example, the actual data that we are concerned with (the number of sun spots in this example) is located
+     * at index 21 (the 22nd character) on each line of the text file. For example, the first line of the sunspots textfile
+     * looks like this:
+     * (* Month: 1749 01 *) 58
+     * In the above example, there were 58 sunspots in January, 1749. We only need to look at the number 58, and more 
+     * specifically, the first digit of this number, which is 5.
+     * 
+     * @param filename the name of the text file to open for input
+     * @param indexOfFirstDigit the starting index of the data(number) in each line of the file
+     * @return an array of doubles, representing the frequencies of first digits in a text file, as a percentage, rounded to the nearest tenth.
+     */
+    
+    public static double[] firstDigitFrequencies(String filename, int indexOfFirstDigit){
         // Location of file to read
-        File file = new File(fileName);
+        File file = new File(filename);        
         
-        int totalLines = 0;
-        int[] freq = new int[10];
-        try 
+        // keeps count of the number of leading digits
+        // for example, tally[1] stores the number of digits beginning with 1,
+        // tally[2] stores the number of digits beginning with 2, etc...
+        // Note: tally[0] is not used for anything, as we are ignoring numbers that start with a 0.
+        // You may use the array, tally, below, or decide to approach this problem
+        // antoher way.
+        int[] tally = new int[10]; 
+        
+        try // try to read the file named file, if it exists
         {
  
             Scanner scanner = new Scanner(file);
-            
-            // flush out the first 4 lines in the text file
-            for (int i = 0; i < 4; i++)
-                scanner.nextLine();
-                
+           
             while (scanner.hasNextLine())
             {
-                // TODO:
-                // Read in the next line and make note of the first digit in a running tally
-               String line = scanner.nextLine();
-                
-                
-            }
-
-            scanner.close();
-        } 
-        catch (FileNotFoundException e) 
-        {
-            e.printStackTrace();
-        }
-        // TODO: 
-        // Print out the results of your tally as as a percentage.
-        // It should look something like this:
-        //
-        // Analysis of library book data:
-        // Percentage of numbers starting with 1: 33.44%
-        // Percentage of numbers starting with 2: 17.57%
-        // Percentage of numbers starting with 3: 11.14%
-        // Percentage of numbers starting with 4: 8.77%
-        // Percentage of numbers starting with 5: 7.00%
-        // Percentage of numbers starting with 6: 6.13%
-        // Percentage of numbers starting with 7: 5.49%
-        // Percentage of numbers starting with 8: 5.50%
-        // Percentage of numbers starting with 9: 4.95%
- 
-    }
-    
-    
-    
-    /**
-     * Opens a file for input and prints out the frequency of 1 as a first digit, 2 as a first digit,
-     * 3 as a first digit, and so forth
-     */ 
-    private static void printFirstDigitsSunSpots(String fileName)
-    {
-        // Location of file to read
-        File file = new File(fileName);
-        //List<String> movies = new ArrayList<String>();
-        
-        int totalLines = 0;
-        int[] freq = new int[10];
-        try 
-        {
- 
-            Scanner scanner = new Scanner(file);
-            
-            //flush out the first 3 lines of the file
-            for (int i = 0; i < 3; i++)
-                scanner.nextLine();
-                
-            while (scanner.hasNextLine())
-            {
-                // TODO:
-                // Read in the next sunpsot count and make note of the first digit in a running tally
-                // Note: Each line of data looks something like this:   (* Month: 1749 05 *) 85
-                // Notice that the integer you are interested comes at the end of the line.
-                // You might use your String methods to extract the character of interest (i.e. '8')
-                // Then you might want to convert the char '8' to an int type. How? 
+                // Read in the next line from the text file.
+                // For example, the first line of the sunspots textfile looks like this:
+                // (* Month: 1749 01 *) 58
+                // where 58 is the number of sunspots. 
                 String line = scanner.nextLine();
+               
+                // TODO: your code here
+                // Your code here should keep a tally of the leading digits.
+                // Ignore all zero entries, as though they don't exist.
+                // Remember that the first digit of the number in question occurs at index: indexOfFirstDigit
+                // You'll have to think about how to convert a char or String to an int. There are many ways of
+                // doing so. Feel free to use StackOverflow to research this if you get stuck.
+                
+                
             }
 
             scanner.close();
@@ -157,19 +107,16 @@ public class BenfordsLaw
         {
             e.printStackTrace();
         }
-        // TODO: 
-        // Print out the results of your tally as as a percentage.
-        // It should look something like this:
-        //
-        // Analysis of sunspot data:
-        // Percentage of numbers starting with 1: 28.24%
-        // Percentage of numbers starting with 2: 12.04%
-        // Percentage of numbers starting with 3: 9.99%
-        // Percentage of numbers starting with 4: 10.34%
-        // Percentage of numbers starting with 5: 9.92%
-        // Percentage of numbers starting with 6: 8.36%
-        // Percentage of numbers starting with 7: 6.28%
-        // Percentage of numbers starting with 8: 6.38%
-        // Percentage of numbers starting with 9: 5.63%
+        // TODO: your code here
+        // return an array of doubles, representing the frequencies of first digits in a text file, as a percentage, 
+        // rounded to the nearest tenth. For example, 29.1 represents 29.14% and 29.2 represents 29.15%.
+   
+    
+
+        
+        //TODO: delete the line of code below
+        return new double[] {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0}; 
     }
+        
+    
 }
