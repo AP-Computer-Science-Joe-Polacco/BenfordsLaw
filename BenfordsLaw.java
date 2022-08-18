@@ -13,8 +13,11 @@ import java.io.*;
  * 
  * Write a program that tests Benford’s Law. You will use data from two different real-life 
  * data sources. The data is stored in two separate text files: sunspots.txt and librarybooks.txt
- * Feel free to try this program out on other large sets of data! You will also be tested on 
- * a third mystery file of stock data.
+ * Feel free to try this program out on other large sets of data! 
+ *
+ * You will also be tested on a third mystery file of stock data and a file of randomly 
+ * generated integers.
+ * 
  * 
  * You will loop through the list of numbers and count how many times 1 is the first
  * digit, 2 is the first, etc...
