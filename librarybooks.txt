@@ -1,7 +1,3 @@
-(* Library holdings (# of books in each library), *)
-(* collected by Christian Ayotte.                 *)
-(* Labels not available.                          *)
-
 12201
 600778
 14926

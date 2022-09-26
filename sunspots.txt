@@ -1,6 +1,3 @@
-(* Sunspot data collected by Robin McQuinn from *)
-(* http://sidc.oma.be/html/sunspot.html         *)
-
 (* Month: 1749 01 *) 58
 (* Month: 1749 02 *) 63
 (* Month: 1749 03 *) 70
