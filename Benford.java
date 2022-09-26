@@ -96,7 +96,8 @@ public class Benford
                
                 // TODO: your code here
                 // Your code here should keep a tally of the leading digits.
-                // Ignore all zero entries, as though they don't exist.
+                // Ignore all zero entries, as though they don't exist. (IMPORTANT)
+                // Thus, zero entries also do not count in the total number of entries. (ALSO IMPORTANT)
                 // Remember that the first digit of the number in question occurs at index: indexOfFirstDigit
                 // You'll have to think about how to convert a char or String to an int. There are many ways of
                 // doing so. Feel free to use StackOverflow to research this if you get stuck.
@@ -112,7 +113,8 @@ public class Benford
         }
         // TODO: your code here
         // return an array of doubles, representing the frequencies of first digits in a text file, as a percentage, 
-        // rounded to the nearest tenth. For example, 29.1 represents 29.14% and 29.2 represents 29.15%.
+        // rounded to the nearest tenth. For example,  29.14% becomes 29.1 and 29.15% becomes 29.2 after rounding.
+        // NOTE: If you do not round correctly, you will likely fail some of the test cases.
    
     
 
