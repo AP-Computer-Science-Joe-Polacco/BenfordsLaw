@@ -78,8 +78,9 @@ public class Benford
         // tally[2] stores the number of digits beginning with 2, etc...
         // Note: tally[0] is not used for anything, as we are ignoring numbers that start with a 0.
         // You may use the array, tally, below, or decide to approach this problem
-        // antoher way.
+        // another way.
         int[] tally = new int[10]; 
+        double[] frequencies = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0}; // used to store frequencies
         
         try // try to read the file named file, if it exists
         {
@@ -116,11 +117,9 @@ public class Benford
         // rounded to the nearest tenth. For example,  29.14% becomes 29.1 and 29.15% becomes 29.2 after rounding.
         // NOTE: If you do not round correctly, you will likely fail some of the test cases.
    
-    
-
         
-        //TODO: delete the line of code below
-        return new double[] {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0}; 
+
+        return frequencies;
     }
         
     
