@@ -79,7 +79,7 @@ public class Benford
         // Note: tally[0] is not used for anything, as we are ignoring numbers that start with a 0.
         // You may use the array, tally, below, or decide to approach this problem
         // another way.
-        int[] tally = new int[10]; 
+        int[] tally = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0}; 
         double[] frequencies = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0}; // used to store frequencies
         
         try // try to read the file named file, if it exists
