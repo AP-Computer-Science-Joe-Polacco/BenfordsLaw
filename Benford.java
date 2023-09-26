@@ -80,7 +80,10 @@ public class Benford
         // You may use the array, tally, below, or decide to approach this problem
         // another way.
         int[] tally = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0}; 
-        double[] frequencies = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0,0}; // used to store frequencies
+        double[] frequencies = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0}; // used to store frequencies 
+        // e.g.  frequencies[0] counts the number of 1's, 
+        // frequencies[1] counts the number of 2's, etc...
+        
         
         try // try to read the file named file, if it exists
         {
